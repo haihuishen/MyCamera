@@ -33,7 +33,9 @@ public class MainActivity extends Activity {
     /** Called when the activity is first created. */
     private Button button;
 
-    private String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+    private String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyCamera";
+    // getFilesDir() ==> 获得：data/data/com.shen.accountbook/files/
+
 
     private ImageFactory imageFactory;
 
@@ -41,6 +43,32 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+//        String filenameTemp = path + "/CacheImage" + ".jpg";
+
+            File file = new File(path);
+            if (!file.exists()) {
+                try {
+                    //按照指定的路径创建文件夹
+                    file.mkdirs();
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    System.out.println("创建文件夹失败："+path);
+                }
+            }
+//            File dir = new File(filenameTemp);
+//            if (!dir.exists()) {
+//                try {
+//                    //在指定的文件夹中创建文件
+//                    dir.createNewFile();
+//                } catch (Exception e) {
+//                }
+//            }
+
+
+
+
 
         imageFactory = new ImageFactory();
 
